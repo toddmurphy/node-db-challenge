@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
 
 //delete --> remove a single project by 'id'
 router.delete('/:id', (req, res) => {
-  const deletedID = req.params;
+  const deletedID = req.params.id;
 
   Projects.deleteProject(deletedID)
     .then(deletedAction => {
