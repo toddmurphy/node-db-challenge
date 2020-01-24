@@ -8,10 +8,10 @@ module.exports = {
 
 //get all resources
 function getResources() {
-  return db.insert('resources');
+  return db('resources');
 }
 
 //add a single resource
 function addResource(resource) {
-  return db.insert('resources').insert(resource);
+  return db('resources').insert(resource);
 }
