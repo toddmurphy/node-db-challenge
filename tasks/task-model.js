@@ -7,7 +7,11 @@ module.exports = {
 };
 
 //get all tasks
-function getTasks() {}
+function getTasks() {
+  return db('tasks');
+}
 
 //add single task
-function addTask() {}
+function addTask(task) {
+  return db('tasks').insert(task);
+}
