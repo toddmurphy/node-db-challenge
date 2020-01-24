@@ -68,8 +68,8 @@ router.put('/:id', (req, res) => {
   const updatedData = req.body;
 
   Projects.updateProject(updatedID, updatedData)
-    .then(updatedInfo => {
-      res.status(200).json(updatedInfo);
+    .then(project => {
+      res.status(200).json(project);
     })
     .catch(error => {
       res.status(500).json({ message: 'Sorry, project with that id not updated on server', error });

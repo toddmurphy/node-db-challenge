@@ -32,12 +32,12 @@ function addProject(project) {
 }
 
 //update single project by 'id
-function updateProject(updatedInfo, id) {
+function updateProject(id, updated) {
   return db('projects')
     .where('id', id)
-    .update(updatedInfo)
+    .update(updated)
     .then(() => {
-      db.update('projects')
+      return getProjectByID(id)
         .where('id', id)
         .first();
     });
