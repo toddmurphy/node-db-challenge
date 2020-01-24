@@ -7,17 +7,15 @@ const taskRouter = require('./api/taskRouter');
 const server = express();
 
 server.use(express.json());
-server.use(helmet());
 
+//add projects, resources,task routes
 server.use('/api/projects', projectRouter);
 server.use('/api/resources', resourceRouter);
 server.use('/api/tasks', taskRouter);
 
-//add projects, resources,task routes
-
 //initial get to make sure server api running
 server.get('/', (req, res) => {
-  res.send(`<h2>Recipe api project working</h2>`);
+  res.send(`<h2>Sprint challenge api project working</h2>`);
 });
 
 module.exports = server;
