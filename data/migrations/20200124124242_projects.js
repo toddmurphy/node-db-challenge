@@ -28,7 +28,13 @@ exports.up = function(knex) {
         tbl.boolean('completed').defaultTo(false);
 
         //task foreign key here ??
-        tbl.integer('project_id'); // i think this will link to project
+        tbl
+          .integer('project_id') // i think this will link to project
+          .unsigned()
+          .references('id')
+          .inTable('projects')
+          .onDelete('RESTRICT')
+          .onUpdate('CASCADE');
       })
       //connector table -- foreign keys to connect all tables together
       .createTable('resource_task_project', tbl => {
@@ -36,18 +42,21 @@ exports.up = function(knex) {
 
         tbl
           .integer('task_id')
+          .unsigned()
           .references('id')
           .inTable('tasks')
           .onDelete('RESTRICT')
           .onUpdate('CASCADE');
         tbl
           .integer('resource_id')
+          .unsigned()
           .references('id')
           .inTable('resources')
           .onDelete('RESTRICT')
           .onUpdate('CASCADE');
         tbl
           .integer('project_id')
+          .unsigned()
           .references('id')
           .inTable('projects')
           .onDelete('RESTRICT')
