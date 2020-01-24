@@ -19,7 +19,7 @@ function getTaskProjects(id) {
     db('tasks')
       //JOIN MUST GO FIRST --> 'tasks' table is joined/connected to 'projects' table
       .join('projects', 'tasks.project_id', 'projects.id') //these linked by 'keys'
-      .select('projects.name', 'projects.description', 'tasks.notes') //SELECT is allowing me to chose from each 'name' & 'description' and pick whatever column and display in the order i write it
+      .select('projects.name', 'projects.description as projectDescription', 'tasks.notes', 'tasks.description') //SELECT is allowing me to chose from each 'name' & 'description' and pick whatever column and display in the order i write it
       .where('tasks.project_id', id) //conditional -> what links it??
       .first()
   );
