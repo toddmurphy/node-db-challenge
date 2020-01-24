@@ -15,6 +15,17 @@ router.get('/', (req, res) => {
     });
 });
 
+//get tasks --> include 'project name' AND 'project description'
+router.get('/description', (req, res) => {
+  Tasks.getTaskProjects()
+    .then(task => {
+      res.status(200).json(task);
+    })
+    .catch(error => {
+      res.status(500).json({ message: 'Sorry, no tasks with project name and project description returned from server', error });
+    });
+});
+
 //post --> create new task
 router.post('/', (req, res) => {
   const taskData = req.body;
