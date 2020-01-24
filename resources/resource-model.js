@@ -7,7 +7,11 @@ module.exports = {
 };
 
 //get all resources
-function getResources() {}
+function getResources() {
+  return db.insert('resources');
+}
 
 //add a single resource
-function addResource() {}
+function addResource(resource) {
+  return db.insert('resources').insert(resource);
+}
