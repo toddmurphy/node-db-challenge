@@ -19,8 +19,8 @@ function getTaskProjects(id) {
     db('tasks')
       //JOIN MUST GO FIRST --> 'tasks' table is joined/connected to 'projects' table
       .join('projects', 'tasks.project_id', 'projects.id') //these linked by 'keys'
-      .select('rojects.name', 'projects.description') //SELECT is allowing me to chose from each 'name' & 'description' and pick whatever column and display in the order i write it
-      .where('resource_task_project.task_id', id) //conditional -> what links it??
+      .select('projects.name', 'projects.description') //SELECT is allowing me to chose from each 'name' & 'description' and pick whatever column and display in the order i write it
+      .where('tasks.project_id', id) //conditional -> what links it??
       .first()
   );
 }
