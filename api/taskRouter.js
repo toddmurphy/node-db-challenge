@@ -16,10 +16,16 @@ router.get('/', (req, res) => {
 });
 
 //get tasks --> include 'project name' AND 'project description'
-router.get('/description', (req, res) => {
-  Tasks.getTaskProjects()
+router.get('/:id/description', (req, res) => {
+  const { id } = req.params;
+
+  Tasks.getTaskProjects(id)
     .then(task => {
-      res.status(200).json(task);
+      if (task) {
+        res.status(200).json(task);
+      } else {
+        res.status(404).json({ message: 'Sorry, no project name project description returned' });
+      }
     })
     .catch(error => {
       res.status(500).json({ message: 'Sorry, no tasks with project name and project description returned from server', error });

@@ -14,14 +14,15 @@ function getTasks() {
 
 //retrieving a list of tasks.
 //The list of tasks should include the project name and project description.
-function getTaskProjects() {
+function getTaskProjects(id) {
   return (
     db('tasks')
       //JOIN MUST GO FIRST --> 'tasks' table is joined/connected to 'projects' table
-      .join() //these linked by 'keys'
-      .select() //SELECT is allowing me to chose from each 'name' & 'description' and pick whatever column and display in the order i write it
-      .where()
-  ); //conditional -> what links it??
+      .join('projects', 'tasks.project_id', 'projects.id') //these linked by 'keys'
+      .select('rojects.name', 'projects.description') //SELECT is allowing me to chose from each 'name' & 'description' and pick whatever column and display in the order i write it
+      .where('resource_task_project.task_id', id) //conditional -> what links it??
+      .first()
+  );
 }
 
 //add single task
